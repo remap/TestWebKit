@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebRTC/WebRTC.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

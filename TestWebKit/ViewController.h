@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
 
+@protocol SettingsViewControllerDelegate;
+@protocol RTCPeerConnectionDelegate;
+@protocol RTCEAGLVideoViewDelegate;
+
+@interface ViewController : UIViewController
+<SettingsViewControllerDelegate, RTCPeerConnectionDelegate,
+RTCEAGLVideoViewDelegate>
 
 @end
 
