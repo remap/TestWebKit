@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66D9EC9B9A1AB68028E8B258 /* Pods_TestWebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */; };
+		AF1F3FE91DF8CF6900C8A857 /* NSObject+NCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1F3FE81DF8CF6900C8A857 /* NSObject+NCAdditions.m */; };
+		AF1F3FEB1DFA363400C8A857 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */; };
+		AF1F3FEC1DFA363900C8A857 /* WebRTC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AF66CFBF1DF8AC8600C651EE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF66CFBE1DF8AC8600C651EE /* SettingsViewController.m */; };
+		AF66CFC21DF8AF4700C651EE /* WebrtcSignallingController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF66CFC11DF8AF4700C651EE /* WebrtcSignallingController.m */; };
 		AFE349E81DD3ED08002D2AF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE349E71DD3ED08002D2AF8 /* main.m */; };
 		AFE349EB1DD3ED08002D2AF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE349EA1DD3ED08002D2AF8 /* AppDelegate.m */; };
 		AFE349EE1DD3ED08002D2AF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE349ED1DD3ED08002D2AF8 /* ViewController.m */; };
@@ -15,6 +21,16 @@
 		AFE349F61DD3ED09002D2AF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFE349F41DD3ED08002D2AF8 /* LaunchScreen.storyboard */; };
 		AFE34A011DD3ED09002D2AF8 /* TestWebKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE34A001DD3ED09002D2AF8 /* TestWebKitTests.m */; };
 		AFE34A0C1DD3ED09002D2AF8 /* TestWebKitUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE34A0B1DD3ED09002D2AF8 /* TestWebKitUITests.m */; };
+		AFE34A1A1DD3EE52002D2AF8 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A191DD3EE52002D2AF8 /* test.jpg */; };
+		AFE34A1C1DD3EF3B002D2AF8 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A1B1DD3EF3B002D2AF8 /* test.html */; };
+		AFE34A271DD3F445002D2AF8 /* three.js in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A1E1DD3F445002D2AF8 /* three.js */; };
+		AFE34A281DD3F445002D2AF8 /* three.min.js in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A1F1DD3F445002D2AF8 /* three.min.js */; };
+		AFE34A291DD3F445002D2AF8 /* three.modules.js in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A201DD3F445002D2AF8 /* three.modules.js */; };
+		AFE34A2A1DD3F445002D2AF8 /* stats.min.js in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A231DD3F445002D2AF8 /* stats.min.js */; };
+		AFE34A2B1DD3F445002D2AF8 /* CanvasRenderer.js in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A251DD3F445002D2AF8 /* CanvasRenderer.js */; };
+		AFE34A2C1DD3F445002D2AF8 /* Projector.js in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A261DD3F445002D2AF8 /* Projector.js */; };
+		AFE34A2E1DD4FC1F002D2AF8 /* Detector.js in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A2D1DD4FC1F002D2AF8 /* Detector.js */; };
+		AFE34A301DD4FCC9002D2AF8 /* disc.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A2F1DD4FCC9002D2AF8 /* disc.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +50,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		AFB8EFF11DF8988900770AF6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AF1F3FEC1DFA363900C8A857 /* WebRTC.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		03D4AA049680C8613A25F9A9 /* Pods-TestWebKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestWebKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestWebKit/Pods-TestWebKit.debug.xcconfig"; sourceTree = "<group>"; };
+		A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestWebKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF1F3FE71DF8CF6900C8A857 /* NSObject+NCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NCAdditions.h"; sourceTree = "<group>"; };
+		AF1F3FE81DF8CF6900C8A857 /* NSObject+NCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NCAdditions.m"; sourceTree = "<group>"; };
+		AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebRTC.framework; path = "../ndnrtc-thirdparty/webrtc-ios/src/out/ios_release/WebRTC.framework"; sourceTree = "<group>"; };
+		AF66CFBD1DF8AC8600C651EE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		AF66CFBE1DF8AC8600C651EE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		AF66CFC01DF8AF4700C651EE /* WebrtcSignallingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebrtcSignallingController.h; sourceTree = "<group>"; };
+		AF66CFC11DF8AF4700C651EE /* WebrtcSignallingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebrtcSignallingController.m; sourceTree = "<group>"; };
 		AFE349E31DD3ED08002D2AF8 /* TestWebKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestWebKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFE349E71DD3ED08002D2AF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AFE349E91DD3ED08002D2AF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +89,17 @@
 		AFE34A071DD3ED09002D2AF8 /* TestWebKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestWebKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFE34A0B1DD3ED09002D2AF8 /* TestWebKitUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestWebKitUITests.m; sourceTree = "<group>"; };
 		AFE34A0D1DD3ED09002D2AF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFE34A191DD3EE52002D2AF8 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
+		AFE34A1B1DD3EF3B002D2AF8 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
+		AFE34A1E1DD3F445002D2AF8 /* three.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = three.js; sourceTree = "<group>"; };
+		AFE34A1F1DD3F445002D2AF8 /* three.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = three.min.js; sourceTree = "<group>"; };
+		AFE34A201DD3F445002D2AF8 /* three.modules.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = three.modules.js; sourceTree = "<group>"; };
+		AFE34A231DD3F445002D2AF8 /* stats.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = stats.min.js; sourceTree = "<group>"; };
+		AFE34A251DD3F445002D2AF8 /* CanvasRenderer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = CanvasRenderer.js; sourceTree = "<group>"; };
+		AFE34A261DD3F445002D2AF8 /* Projector.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Projector.js; sourceTree = "<group>"; };
+		AFE34A2D1DD4FC1F002D2AF8 /* Detector.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Detector.js; sourceTree = "<group>"; };
+		AFE34A2F1DD4FCC9002D2AF8 /* disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disc.png; sourceTree = "<group>"; };
+		DBF82CEA0B9C5D7BE8D15EDA /* Pods-TestWebKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestWebKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestWebKit/Pods-TestWebKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +107,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66D9EC9B9A1AB68028E8B258 /* Pods_TestWebKit.framework in Frameworks */,
+				AF1F3FEB1DFA363400C8A857 /* WebRTC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,13 +129,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF1972421DEE04A20046209D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */,
+				A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AFE349DA1DD3ED08002D2AF8 = {
 			isa = PBXGroup;
 			children = (
+				AF1972421DEE04A20046209D /* Frameworks */,
 				AFE349E51DD3ED08002D2AF8 /* TestWebKit */,
 				AFE349FF1DD3ED09002D2AF8 /* TestWebKitTests */,
 				AFE34A0A1DD3ED09002D2AF8 /* TestWebKitUITests */,
 				AFE349E41DD3ED08002D2AF8 /* Products */,
+				E4E75DB555AD5EFC04BC6BF9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +163,8 @@
 		AFE349E51DD3ED08002D2AF8 /* TestWebKit */ = {
 			isa = PBXGroup;
 			children = (
+				AF1F3FE71DF8CF6900C8A857 /* NSObject+NCAdditions.h */,
+				AF1F3FE81DF8CF6900C8A857 /* NSObject+NCAdditions.m */,
 				AFE349E91DD3ED08002D2AF8 /* AppDelegate.h */,
 				AFE349EA1DD3ED08002D2AF8 /* AppDelegate.m */,
 				AFE349EC1DD3ED08002D2AF8 /* ViewController.h */,
@@ -110,6 +174,10 @@
 				AFE349F41DD3ED08002D2AF8 /* LaunchScreen.storyboard */,
 				AFE349F71DD3ED09002D2AF8 /* Info.plist */,
 				AFE349E61DD3ED08002D2AF8 /* Supporting Files */,
+				AF66CFBD1DF8AC8600C651EE /* SettingsViewController.h */,
+				AF66CFBE1DF8AC8600C651EE /* SettingsViewController.m */,
+				AF66CFC01DF8AF4700C651EE /* WebrtcSignallingController.h */,
+				AF66CFC11DF8AF4700C651EE /* WebrtcSignallingController.m */,
 			);
 			path = TestWebKit;
 			sourceTree = "<group>";
@@ -117,7 +185,12 @@
 		AFE349E61DD3ED08002D2AF8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AFE34A2F1DD4FCC9002D2AF8 /* disc.png */,
+				AFE34A1D1DD3F445002D2AF8 /* build */,
+				AFE34A211DD3F445002D2AF8 /* js */,
+				AFE34A191DD3EE52002D2AF8 /* test.jpg */,
 				AFE349E71DD3ED08002D2AF8 /* main.m */,
+				AFE34A1B1DD3EF3B002D2AF8 /* test.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -140,6 +213,52 @@
 			path = TestWebKitUITests;
 			sourceTree = "<group>";
 		};
+		AFE34A1D1DD3F445002D2AF8 /* build */ = {
+			isa = PBXGroup;
+			children = (
+				AFE34A1E1DD3F445002D2AF8 /* three.js */,
+				AFE34A1F1DD3F445002D2AF8 /* three.min.js */,
+				AFE34A201DD3F445002D2AF8 /* three.modules.js */,
+			);
+			path = build;
+			sourceTree = "<group>";
+		};
+		AFE34A211DD3F445002D2AF8 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				AFE34A2D1DD4FC1F002D2AF8 /* Detector.js */,
+				AFE34A221DD3F445002D2AF8 /* libs */,
+				AFE34A241DD3F445002D2AF8 /* renderers */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		AFE34A221DD3F445002D2AF8 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				AFE34A231DD3F445002D2AF8 /* stats.min.js */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		AFE34A241DD3F445002D2AF8 /* renderers */ = {
+			isa = PBXGroup;
+			children = (
+				AFE34A251DD3F445002D2AF8 /* CanvasRenderer.js */,
+				AFE34A261DD3F445002D2AF8 /* Projector.js */,
+			);
+			path = renderers;
+			sourceTree = "<group>";
+		};
+		E4E75DB555AD5EFC04BC6BF9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				03D4AA049680C8613A25F9A9 /* Pods-TestWebKit.debug.xcconfig */,
+				DBF82CEA0B9C5D7BE8D15EDA /* Pods-TestWebKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +266,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AFE34A101DD3ED09002D2AF8 /* Build configuration list for PBXNativeTarget "TestWebKit" */;
 			buildPhases = (
+				01ADE7399231475A33776845 /* [CP] Check Pods Manifest.lock */,
 				AFE349DF1DD3ED08002D2AF8 /* Sources */,
 				AFE349E01DD3ED08002D2AF8 /* Frameworks */,
 				AFE349E11DD3ED08002D2AF8 /* Resources */,
+				AFB8EFF11DF8988900770AF6 /* CopyFiles */,
+				287240202CA1C128D923DC6E /* [CP] Embed Pods Frameworks */,
+				3EF6C2BAD02961B0CDE655D1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -250,8 +373,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFE349F61DD3ED09002D2AF8 /* LaunchScreen.storyboard in Resources */,
+				AFE34A2C1DD3F445002D2AF8 /* Projector.js in Resources */,
 				AFE349F31DD3ED08002D2AF8 /* Assets.xcassets in Resources */,
+				AFE34A291DD3F445002D2AF8 /* three.modules.js in Resources */,
+				AFE34A2B1DD3F445002D2AF8 /* CanvasRenderer.js in Resources */,
 				AFE349F11DD3ED08002D2AF8 /* Main.storyboard in Resources */,
+				AFE34A2A1DD3F445002D2AF8 /* stats.min.js in Resources */,
+				AFE34A1C1DD3EF3B002D2AF8 /* test.html in Resources */,
+				AFE34A2E1DD4FC1F002D2AF8 /* Detector.js in Resources */,
+				AFE34A281DD3F445002D2AF8 /* three.min.js in Resources */,
+				AFE34A1A1DD3EE52002D2AF8 /* test.jpg in Resources */,
+				AFE34A301DD4FCC9002D2AF8 /* disc.png in Resources */,
+				AFE34A271DD3F445002D2AF8 /* three.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,14 +404,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01ADE7399231475A33776845 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		287240202CA1C128D923DC6E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TestWebKit/Pods-TestWebKit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3EF6C2BAD02961B0CDE655D1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TestWebKit/Pods-TestWebKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AFE349DF1DD3ED08002D2AF8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1F3FE91DF8CF6900C8A857 /* NSObject+NCAdditions.m in Sources */,
 				AFE349EE1DD3ED08002D2AF8 /* ViewController.m in Sources */,
 				AFE349EB1DD3ED08002D2AF8 /* AppDelegate.m in Sources */,
 				AFE349E81DD3ED08002D2AF8 /* main.m in Sources */,
+				AF66CFBF1DF8AC8600C651EE /* SettingsViewController.m in Sources */,
+				AF66CFC21DF8AF4700C651EE /* WebrtcSignallingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,9 +609,16 @@
 		};
 		AFE34A111DD3ED09002D2AF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03D4AA049680C8613A25F9A9 /* Pods-TestWebKit.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6KW3GER39A;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = TestWebKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.ucla.remap.TestWebKit;
@@ -437,11 +628,19 @@
 		};
 		AFE34A121DD3ED09002D2AF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBF82CEA0B9C5D7BE8D15EDA /* Pods-TestWebKit.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6KW3GER39A;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = TestWebKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.ucla.remap.TestWebKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -516,6 +715,7 @@
 				AFE34A121DD3ED09002D2AF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFE34A131DD3ED09002D2AF8 /* Build configuration list for PBXNativeTarget "TestWebKitTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +724,7 @@
 				AFE34A151DD3ED09002D2AF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFE34A161DD3ED09002D2AF8 /* Build configuration list for PBXNativeTarget "TestWebKitUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +733,7 @@
 				AFE34A181DD3ED09002D2AF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
