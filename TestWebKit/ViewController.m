@@ -11,6 +11,7 @@
 #import "WebrtcSignallingController.h"
 #import <WebRTC/WebRTC.h>
 #import "NSObject+NCAdditions.h"
+#import <JavaScriptCore/JavaScriptCore.h>
 
 static RTCPeerConnectionFactory *peerConnectionFactory;
 
@@ -54,6 +55,11 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
      kWebrtcControllerGotOfferNotification, @selector(onReceivedOffer:),
      kWebrtcControllerIceCandidatesNotification, @selector(onReceivedIceCandidate:),
      nil];
+    
+    JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    jsContext[@"console"][@"log"] = ^(JSValue *msg) {
+        NSLog(@"JAVASCRIPT CONSOLE.LOG: %@", msg);
+    };
 }
 
 
@@ -70,7 +76,7 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
 
 -(void)onDidSetUrl:(NSURL *)urlAddress
 {
-    
+    [self.webView loadRequest:[NSURLRequest requestWithURL:urlAddress]];
 }
 
 -(void)onDidChooseTestPage

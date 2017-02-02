@@ -56,6 +56,14 @@ NSString* const kWebpageUrlKey = @"webpageUrl";
         [self.delegate onDidChooseTestPage];
 }
 
+- (IBAction)onReloadTap:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(onDidSetUrl:)])
+    {
+        NSURL *url = [NSURL URLWithString: [[NSUserDefaults standardUserDefaults] stringForKey:kWebpageUrlKey]];
+        [self.delegate onDidSetUrl:url];
+    }
+}
+
 - (IBAction)onConnectTap:(id)sender {
     NSString *ip = self.ipAddressField.text;
     NSUInteger portNum = 3001;

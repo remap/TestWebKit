@@ -17,9 +17,11 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>5</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera is not used in this app</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>webrtc requirement</string>
 	<key>UILaunchStoryboardName</key>

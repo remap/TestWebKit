@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "54D9B4FAA046C2C7F0E6588646F7ACDC98FF079A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8FFACF9194D48576A22F6F0C4F6B4F0BA1ABFC64" : 9223372036854775807,
+    "54D9B4FAA046C2C7F0E6588646F7ACDC98FF079A" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C9AC32B8-C72E-49AA-80C6-1608B8CC8B34",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8FFACF9194D48576A22F6F0C4F6B4F0BA1ABFC64" : "ndnrtc-thirdparty\/webrtc-ios\/src\/",
+    "54D9B4FAA046C2C7F0E6588646F7ACDC98FF079A" : "TestWebKit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TestWebKit",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TestWebKit.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/remap\/TestWebKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "54D9B4FAA046C2C7F0E6588646F7ACDC98FF079A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/chromium.googlesource.com\/external\/webrtc.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8FFACF9194D48576A22F6F0C4F6B4F0BA1ABFC64"
+    }
+  ]
+}
