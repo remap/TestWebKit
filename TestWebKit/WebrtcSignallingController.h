@@ -24,6 +24,8 @@ extern NSString* const kWebrtcControllerOfferKey;
 
 +(WebrtcSignallingController*)sharedInstance;
 
+@property (nonatomic, readonly) NSString *serverAddress;
+
 -(void)connectTo:(NSString*)ipAddress
           atPort:(NSUInteger)portNum
     withCallback:(ConnectCallback)onResult;

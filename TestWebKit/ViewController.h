@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString* const kServerReconnectNeeded;
 
 @protocol SettingsViewControllerDelegate;
 @protocol RTCPeerConnectionDelegate;
@@ -15,7 +16,9 @@
 
 @interface ViewController : UIViewController
 <SettingsViewControllerDelegate, RTCPeerConnectionDelegate,
-RTCEAGLVideoViewDelegate>
+RTCEAGLVideoViewDelegate, UIWebViewDelegate>
+
+@property (nonatomic, readonly) NSString *currentURL;
 
 @end
 

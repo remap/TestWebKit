@@ -73,7 +73,6 @@ NSString* const kWebrtcControllerOfferKey = @"offer";
     return self;
 }
 
-
 -(void)connectTo:(NSString *)ipAddress
           atPort:(NSUInteger)portNum
     withCallback:(ConnectCallback)onResult
@@ -114,6 +113,11 @@ NSString* const kWebrtcControllerOfferKey = @"offer";
 -(void)sendIceCandidate:(NSDictionary*)ice
 {
     [self.socket emit:@"ice" with:@[ice]];
+}
+
+-(NSString *)serverAddress
+{
+    return self.socket.socketURL.absoluteString;
 }
 
 #pragma mark - private

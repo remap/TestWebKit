@@ -12,6 +12,19 @@
 #import <WebRTC/WebRTC.h>
 #import "NSObject+NCAdditions.h"
 #import <JavaScriptCore/JavaScriptCore.h>
+#import <GLKit/GLKit.h>
+
+NSString* const kServerReconnectNeeded = @"kServerReconnectNeeded";
+
+NSString* const kJsHookApp = @"iosapp";
+NSString* const kJsHookVideoVisibile = @"setVideoVisibility";   // 1 argument - video visibility (boolean)
+NSString* const kJsHookSetServerAddress = @"setServerAddress";  // 1 argument - server address (<IP>:<port number>)
+NSString* const kJsHookServerReconnect = @"serverReconnect";    // no arguments, reconnects to the previously set address
+NSString* const kJsHookSetURL = @"setUrl";      // 1 argument - URL. does not load it
+NSString* const kJsHookLoadURL = @"loadUrl";    // no arguments - loads previously set URL
+NSString* const kJsHookSetVideoSize = @"setVideoSize";  // 2 arguments - width and height (normalized, scale [0,1])
+NSString* const kJsHookOffsetVideo = @"setVideoOffset"; // 2 arguments - xoffset and yoffset (normalized, scale [0,1])
+NSString* const kJsHookCaptureScreenshot = @"captureScreen"; // no arguments
 
 static RTCPeerConnectionFactory *peerConnectionFactory;
 
@@ -22,6 +35,9 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
 @property (nonatomic,weak) IBOutlet RTCEAGLVideoView *renderingView;
 @property (nonatomic) RTCMediaConstraints *constraints;
 @property (nonatomic) RTCVideoTrack *track;
+@property (nonatomic) JSContext *jsContext;
+@property (nonatomic) CADisplayLink *displayLink;
+@property (nonatomic) BOOL requestedScreenshot;
 
 @end
 
@@ -34,6 +50,7 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
     // (make sure your html is transparent also)
     self.webView.opaque = NO;
     self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.delegate = self;
     
     // disable scrolling
     self.webView.scrollView.scrollEnabled = NO;
@@ -56,13 +73,8 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
      kWebrtcControllerIceCandidatesNotification, @selector(onReceivedIceCandidate:),
      nil];
     
-    JSContext *jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    jsContext[@"console"][@"log"] = ^(JSValue *msg) {
-        NSLog(@"JAVASCRIPT CONSOLE.LOG: %@", msg);
-    };
+    self.requestedScreenshot = NO;
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -84,7 +96,64 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
     [self setupTestPage];
 }
 
+-(NSString *)currentURL
+{
+    return self.webView.request.URL.absoluteString;
+}
+
 #pragma mark - private
+-(void)setupJsHooks
+{
+    self.jsContext = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    self.jsContext[@"console"][@"log"] = ^(JSValue *msg) {
+        NSLog(@"JAVASCRIPT CONSOLE.LOG: %@", msg);
+    };
+    
+    self.jsContext[kJsHookApp] = self;
+    
+    self.jsContext[kJsHookApp][kJsHookVideoVisibile] = ^(JSValue *visibility){
+        BOOL videoVisibility = [visibility toBool];
+        NSLog(@"setting video visibility to %@", (videoVisibility ? @"VISIBLE" : @"HIDDEN"));
+        self.renderingView.hidden  = !videoVisibility;
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookSetServerAddress] = ^(JSValue *serverAddress){
+        [[NSUserDefaults standardUserDefaults] setValue:[serverAddress toString] forKey:kServerAddressKey];
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookServerReconnect] = ^(){
+        [[NSNotificationCenter defaultCenter] notifyNowWithNotificationName:kServerReconnectNeeded andUserInfo:nil];
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookSetURL] = ^(JSValue *url){
+        [[NSUserDefaults standardUserDefaults] setValue:[url toString] forKey:kWebpageUrlKey];
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookLoadURL] = ^(){
+        NSURL *url = [NSURL URLWithString:[[NSUserDefaults standardUserDefaults] stringForKey:kWebpageUrlKey]];
+        [self onDidSetUrl:url];
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookSetVideoSize] = ^(JSValue *width, JSValue *height){
+        CGSize parentView = self.view.bounds.size;
+        CGRect videoRect = CGRectMake(self.renderingView.frame.origin.x, self.renderingView.frame.origin.y,
+                                      [width toDouble]*parentView.width, [height toDouble]*parentView.height);
+        [self.renderingView setFrame:videoRect];
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookOffsetVideo] = ^(JSValue *xoff, JSValue *yoff){
+        CGSize parentView = self.view.bounds.size;
+        CGRect videoRect = CGRectMake([xoff toDouble]*parentView.width, [yoff toDouble]*parentView.height,
+                                      self.renderingView.frame.size.width, self.renderingView.frame.size.height);
+        [self.renderingView setFrame:videoRect];
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookCaptureScreenshot] = ^(){
+        self.requestedScreenshot = YES;
+        [self setupCaLink];
+    };
+}
+
 -(void)setupTestPage
 {
     // load page
@@ -114,6 +183,40 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
                                                                         delegate:self];
 }
 
+-(void)setupCaLink
+{
+    self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(onCaLinkCallback:)];
+    [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+-(void)onCaLinkCallback:(CADisplayLink *)sender
+{
+    if (self.requestedScreenshot)
+    {
+        self.requestedScreenshot = NO;
+        [self captureScreen];
+        [self.displayLink invalidate];
+        self.displayLink = nil;
+    }
+}
+
+-(void)captureScreen
+{
+    GLKView *renderView  = self.renderingView.subviews[0];
+    assert([renderView isKindOfClass:[GLKView class]]);
+    
+    UIImage *img = [renderView snapshot];
+    UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (void)               image: (UIImage *) image
+    didFinishSavingWithError: (NSError *) error
+                 contextInfo: (void *) contextInfo
+{
+    if (error)
+        NSLog(@"couldn't save screenshot due to an error: %@", error);
+}
+
 #pragma mark - RTCPeerConnectionDelegate
 /** Called when the SignalingState changed. */
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
@@ -129,6 +232,12 @@ didChangeSignalingState:(RTCSignalingState)stateChanged
           (unsigned long)stream.audioTracks.count, (unsigned long)stream.videoTracks.count);
     self.track = stream.videoTracks.lastObject;
     [self.track addRenderer:self.renderingView];
+    
+    NSError *err = nil;
+    [[AVAudioSession sharedInstance] setActive:NO error:&err];
+    
+    if (err)
+        NSLog(@"failed to deactivate audio session: %@", err);
 }
 
 /** Called when a remote peer closes a stream. */
@@ -240,6 +349,17 @@ didRemoveIceCandidates:(NSArray<RTCIceCandidate *> *)candidates
 - (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size
 {
     
+}
+
+#pragma mark - UIWebView delegate
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self setupJsHooks];
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"Can't load provided URL due to an error: %@", error);
 }
 
 @end
