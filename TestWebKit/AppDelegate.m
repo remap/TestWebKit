@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "SettingsViewController.h"
+#import "WebrtcSignallingController.h"
+
+NSString* const kEnableSettings = @"enableSettings";
 
 @interface AppDelegate ()
 
@@ -18,8 +21,8 @@
 
 @implementation AppDelegate
 
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.splitViewController = (UISplitViewController*)self.window.rootViewController;
     self.splitViewController.preferredDisplayMode = UISplitViewControllerDisplayModePrimaryHidden;
     
@@ -27,6 +30,11 @@
     ViewController *detailVC = self.splitViewController.viewControllers.lastObject;
     
     masterVC.delegate = detailVC;
+    
+    self.splitViewController.presentsWithGesture = [[NSUserDefaults standardUserDefaults] boolForKey:kEnableSettings];
+    
+    [self checkWebUrlChange: YES];
+    [self checkSignalingServerChange: YES];
     
     return YES;
 }
@@ -41,12 +49,14 @@
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    
+    [self checkSettingsPanelChange];
+    [self checkWebUrlChange: NO];
+    [self checkSignalingServerChange: NO];
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 
@@ -54,5 +64,37 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+#pragma mark - private
+-(void)checkSettingsPanelChange
+{
+    BOOL enableSettings = [[NSUserDefaults standardUserDefaults] boolForKey:kEnableSettings];
+    
+    self.splitViewController.presentsWithGesture = enableSettings;
+    
+    if (!enableSettings)
+        [self.splitViewController setPreferredDisplayMode: UISplitViewControllerDisplayModePrimaryHidden];
+}
+
+-(void)checkWebUrlChange:(BOOL)forceUpdate
+{
+    ViewController *detailVC = self.splitViewController.viewControllers.lastObject;
+    NSString *webUrl = [[NSUserDefaults standardUserDefaults] objectForKey:kWebpageUrlKey];
+    
+    if (![detailVC.currentURL isEqualToString:webUrl] || forceUpdate)
+        [detailVC onDidSetUrl:[NSURL URLWithString:webUrl]];
+}
+
+-(void)checkSignalingServerChange:(BOOL)forceUpdate
+{
+    SettingsViewController *masterVC = [self.splitViewController.viewControllers.firstObject topViewController];
+    NSString *serverAddress = [[NSUserDefaults standardUserDefaults] objectForKey:kServerAddressKey];
+    
+    if (![[WebrtcSignallingController sharedInstance].serverAddress isEqualToString:serverAddress] || forceUpdate)
+    {
+        // user settings controller to re-connect (as it implements webrtc delegate, etc.
+        [masterVC connect:serverAddress];
+    }
+}
 
 @end
