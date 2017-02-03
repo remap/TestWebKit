@@ -10,17 +10,35 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Group</string>
+			<string>Settings</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Name</string>
+			<string>WebRTC server:</string>
 			<key>Key</key>
-			<string>name_preference</string>
+			<string>serverAddress</string>
 			<key>DefaultValue</key>
-			<string></string>
+			<string>192.168.0.1:3001</string>
+			<key>IsSecure</key>
+			<false/>
+			<key>KeyboardType</key>
+			<string>Alphabet</string>
+			<key>AutocapitalizationType</key>
+			<string>None</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Page URL:</string>
+			<key>Key</key>
+			<string>webpageUrl</string>
+			<key>DefaultValue</key>
+			<string>https://github.com/daveseah/PLAE</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>
@@ -34,27 +52,11 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Enabled</string>
+			<string>Enable settings panel</string>
 			<key>Key</key>
-			<string>enabled_preference</string>
+			<string>enableSettings</string>
 			<key>DefaultValue</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSSliderSpecifier</string>
-			<key>Key</key>
-			<string>slider_preference</string>
-			<key>DefaultValue</key>
-			<real>0.5</real>
-			<key>MinimumValue</key>
-			<integer>0</integer>
-			<key>MaximumValue</key>
-			<integer>1</integer>
-			<key>MinimumValueImage</key>
-			<string></string>
-			<key>MaximumValueImage</key>
-			<string></string>
+			<false/>
 		</dict>
 	</array>
 </dict>

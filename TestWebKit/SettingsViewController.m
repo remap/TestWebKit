@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "WebrtcSignallingController.h"
 #import "NSObject+NCAdditions.h"
+#import "ViewController.h"
 
 NSString* const kServerAddressKey = @"serverAddress";
 NSString* const kWebpageUrlKey = @"webpageUrl";
@@ -27,23 +28,21 @@ NSString* const kWebpageUrlKey = @"webpageUrl";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:kServerAddressKey])
-    {
-        self.ipAddressField.text = [[NSUserDefaults standardUserDefaults] objectForKey:kServerAddressKey];
-        [self onConnectTap:nil];
-    }
-    else
-        self.ipAddressField.text = @"192.168.0.1:3001";
-    
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:kWebpageUrlKey])
-        self.webpageUrlField.text = [[NSUserDefaults standardUserDefaults] objectForKey:kWebpageUrlKey];
+    [self loadDataFromDefaults];
     
     self.serverConnectionLabel.text = @"disconnected";
     [self subscribeForNotificationsAndSelectors:
      kWebrtcControllerGotIdNotificaiton, @selector(onReceivedId:),
      kWebrtcControllerProducerConnectedNotificaiton, @selector(onProducerStatusChanged:),
      kWebrtcControllerProducerDisconnectedNotification, @selector(onProducerStatusChanged:),
+     kServerReconnectNeeded, @selector(onReconnectRequested:),
      nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadDataFromDefaults];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,7 +64,20 @@ NSString* const kWebpageUrlKey = @"webpageUrl";
 }
 
 - (IBAction)onConnectTap:(id)sender {
-    NSString *ip = self.ipAddressField.text;
+    [self connect: self.ipAddressField.text];
+}
+
+- (IBAction)serverAddressChanged:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setObject:[sender text] forKey:kServerAddressKey];
+}
+
+- (IBAction)onWebpageUrlChanged:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setObject:[sender text] forKey:kWebpageUrlKey];
+}
+
+-(void)connect:(NSString*)serverAddress
+{
+    NSString *ip = serverAddress;
     NSUInteger portNum = 3001;
     
     NSArray *comps = [ip componentsSeparatedByString:@":"];
@@ -89,19 +101,24 @@ NSString* const kWebpageUrlKey = @"webpageUrl";
                                                           self.producerStatusLabel.textColor = [UIColor blackColor];
                                                       }
                                                       else
-                                                          self.serverConnectionLabel.text = @"connected";
+                                                      self.serverConnectionLabel.text = @"connected";
                                                   });
                                                   
                                               }];
     self.serverConnectionLabel.text = @"trying...";
 }
 
-- (IBAction)serverAddressChanged:(id)sender {
-    [[NSUserDefaults standardUserDefaults] setObject:[sender text] forKey:kServerAddressKey];
-}
-
-- (IBAction)onWebpageUrlChanged:(id)sender {
-    [[NSUserDefaults standardUserDefaults] setObject:[sender text] forKey:kWebpageUrlKey];
+#pragma mark - private
+-(void)loadDataFromDefaults
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kServerAddressKey])
+        self.ipAddressField.text = [[NSUserDefaults standardUserDefaults] objectForKey:kServerAddressKey];
+//        [self onConnectTap:nil];
+    else
+        self.ipAddressField.text = @"192.168.0.1:3001";
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kWebpageUrlKey])
+        self.webpageUrlField.text = [[NSUserDefaults standardUserDefaults] objectForKey:kWebpageUrlKey];
 }
 
 #pragma mark - notificaitons
@@ -123,6 +140,11 @@ NSString* const kWebpageUrlKey = @"webpageUrl";
         self.producerStatusLabel.text = @"disconnected";
         self.producerStatusLabel.textColor = [UIColor redColor];
     }
+}
+
+-(void)onReconnectRequested:(NSNotification*)notification
+{
+    [self connect:[[NSUserDefaults standardUserDefaults] stringForKey:kServerAddressKey]];
 }
 
 @end

@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString* const kServerAddressKey;
+extern NSString* const kWebpageUrlKey;
+
 @protocol SettingsViewControllerDelegate;
 
 @interface SettingsViewController : UIViewController
 
 @property (nonatomic, weak) id<SettingsViewControllerDelegate> delegate;
+
+-(void)connect:(NSString*)serverAddress;
 
 @end
 
