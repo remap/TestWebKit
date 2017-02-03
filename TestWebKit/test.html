@@ -42,7 +42,6 @@
         <script src="stats.min.js"></script>
         
         <script>
-            
             // example calls to iOS hosting application
             //
             // iosapp.setVideoVisibility(false);
@@ -52,7 +51,21 @@
             // iosapp.loadUrl();
             // iosapp.setVideoSize(0.5, 0.5);
             // iosapp.setVideoOffset(0.3, 0.3);
-            // iosapp.captureScreen();
+            // iosapp.captureScreen(function (imgBase64) {}); // also saves image to device's library
+            
+            // for debug purposes
+            // console.log("test log message!");
+            // var n = 10;
+            // var f = function() {
+            //    console.log('capture '+n);
+            //    iosapp.captureScreen(function (img) {
+            //                            console.log('got image: '+img);
+            //                         });
+            //    n = n-1;
+            //    if (n > 0) setTimeout(f, 1000);
+            //}
+            //setTimeout(f, 3000);
+
             if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
             
             var container, stats;

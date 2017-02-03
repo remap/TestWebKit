@@ -24,7 +24,7 @@ NSString* const kJsHookSetURL = @"setUrl";      // 1 argument - URL. does not lo
 NSString* const kJsHookLoadURL = @"loadUrl";    // no arguments - loads previously set URL
 NSString* const kJsHookSetVideoSize = @"setVideoSize";  // 2 arguments - width and height (normalized, scale [0,1])
 NSString* const kJsHookOffsetVideo = @"setVideoOffset"; // 2 arguments - xoffset and yoffset (normalized, scale [0,1])
-NSString* const kJsHookCaptureScreenshot = @"captureScreen"; // no arguments
+NSString* const kJsHookCaptureScreenshot = @"captureScreen"; // 1 argument - callback that takes base64-encoded image
 
 static RTCPeerConnectionFactory *peerConnectionFactory;
 
@@ -38,6 +38,7 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
 @property (nonatomic) JSContext *jsContext;
 @property (nonatomic) CADisplayLink *displayLink;
 @property (nonatomic) BOOL requestedScreenshot;
+@property (nonatomic) JSValue *screenshotCallback;
 
 @end
 
@@ -148,7 +149,8 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
         [self.renderingView setFrame:videoRect];
     };
     
-    self.jsContext[kJsHookApp][kJsHookCaptureScreenshot] = ^(){
+    self.jsContext[kJsHookApp][kJsHookCaptureScreenshot] = ^(JSValue *callback){
+        self.screenshotCallback = callback;
         self.requestedScreenshot = YES;
         [self setupCaLink];
     };
@@ -207,6 +209,12 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
     
     UIImage *img = [renderView snapshot];
     UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    
+    NSData *data = UIImageJPEGRepresentation(img, 1.);
+    NSString *base64Data = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    
+    [self.screenshotCallback callWithArguments:@[[NSString stringWithFormat:@"data:image/jpeg;base64,%@", base64Data]]];
+    self.screenshotCallback = nil;
 }
 
 - (void)               image: (UIImage *) image
