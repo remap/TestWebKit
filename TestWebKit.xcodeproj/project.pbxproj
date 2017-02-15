@@ -8,15 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		66D9EC9B9A1AB68028E8B258 /* Pods_TestWebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		AF141E8D1E43DC8D0004CDE1 /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF141E8C1E43DC8D0004CDE1 /* SocketIO.framework */; };
-		AF141E8E1E43DC960004CDE1 /* SocketIO.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF141E8C1E43DC8D0004CDE1 /* SocketIO.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AF141E911E442F4E0004CDE1 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */; };
+		AF141E921E442F8D0004CDE1 /* Pods_TestWebKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF1F3FE91DF8CF6900C8A857 /* NSObject+NCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1F3FE81DF8CF6900C8A857 /* NSObject+NCAdditions.m */; };
-		AF1F3FEB1DFA363400C8A857 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */; };
 		AF1F3FEC1DFA363900C8A857 /* WebRTC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF66CFBF1DF8AC8600C651EE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF66CFBE1DF8AC8600C651EE /* SettingsViewController.m */; };
 		AF66CFC21DF8AF4700C651EE /* WebrtcSignallingController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF66CFC11DF8AF4700C651EE /* WebrtcSignallingController.m */; };
 		AFC6C61B1E42C73000EB097D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AFC6C61A1E42C73000EB097D /* Settings.bundle */; };
-		AFC6C61C1E43D31200EB097D /* Pods_TestWebKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AFE349E81DD3ED08002D2AF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE349E71DD3ED08002D2AF8 /* main.m */; };
 		AFE349EB1DD3ED08002D2AF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE349EA1DD3ED08002D2AF8 /* AppDelegate.m */; };
 		AFE349EE1DD3ED08002D2AF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE349ED1DD3ED08002D2AF8 /* ViewController.m */; };
@@ -56,15 +54,14 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		AFB8EFF11DF8988900770AF6 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
 				AF1F3FEC1DFA363900C8A857 /* WebRTC.framework in CopyFiles */,
-				AFC6C61C1E43D31200EB097D /* Pods_TestWebKit.framework in CopyFiles */,
-				AF141E8E1E43DC960004CDE1 /* SocketIO.framework in CopyFiles */,
+				AF141E921E442F8D0004CDE1 /* Pods_TestWebKit.framework in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -114,8 +111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66D9EC9B9A1AB68028E8B258 /* Pods_TestWebKit.framework in Frameworks */,
-				AF1F3FEB1DFA363400C8A857 /* WebRTC.framework in Frameworks */,
-				AF141E8D1E43DC8D0004CDE1 /* SocketIO.framework in Frameworks */,
+				AF141E911E442F4E0004CDE1 /* WebRTC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
