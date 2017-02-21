@@ -13,7 +13,8 @@ extern NSString* const kWebpageUrlKey;
 
 @protocol SettingsViewControllerDelegate;
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UIViewController<UITableViewDataSource,
+UITableViewDelegate>
 
 @property (nonatomic, weak) id<SettingsViewControllerDelegate> delegate;
 
@@ -25,5 +26,6 @@ extern NSString* const kWebpageUrlKey;
 
 -(void)onDidSetUrl:(NSURL*)urlAddress;
 -(void)onDidChooseTestPage;
+-(void)onDidChooseRecord:(NSString*)record;
 
 @end

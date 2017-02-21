@@ -23,14 +23,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Elz-Ka-yLG" userLabel="rendering view" customClass="RTCEAGLVideoView">
-                                <rect key="frame" x="0.0" y="120" width="703" height="527"/>
+                                <rect key="frame" x="0.0" y="120" width="702.5" height="527"/>
                                 <color key="backgroundColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Elz-Ka-yLG" secondAttribute="height" multiplier="4:3" id="xAS-FY-E8G"/>
                                 </constraints>
                             </view>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qjn-gl-RF6">
-                                <rect key="frame" x="5" y="20" width="697.5" height="748"/>
+                                <rect key="frame" x="5" y="20" width="698" height="748"/>
                                 <color key="backgroundColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             </webView>
                         </subviews>
@@ -133,15 +133,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLA-pG-njI">
+                                <rect key="frame" x="11" y="246" width="85" height="30"/>
+                                <state key="normal" title="Get Records"/>
+                                <connections>
+                                    <action selector="getRecords:" destination="KrL-dY-Sb7" eventType="touchUpInside" id="hdg-Zm-qcg"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kzW-HH-IGC">
+                                <rect key="frame" x="0.0" y="284" width="320" height="464"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="KrL-dY-Sb7" id="J8J-QJ-RFg"/>
+                                    <outlet property="delegate" destination="KrL-dY-Sb7" id="V27-DK-Txy"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="aTK-4G-VmV" firstAttribute="leading" secondItem="xL1-oJ-rM1" secondAttribute="leading" id="7KT-sE-sGH"/>
+                            <constraint firstItem="kzW-HH-IGC" firstAttribute="top" secondItem="cLA-pG-njI" secondAttribute="bottom" constant="8" id="8kc-mf-hPC"/>
+                            <constraint firstItem="kzW-HH-IGC" firstAttribute="leading" secondItem="Uot-gW-IrF" secondAttribute="leading" id="DHd-87-Uti"/>
                             <constraint firstItem="Bw6-QL-exe" firstAttribute="top" secondItem="aTK-4G-VmV" secondAttribute="bottom" constant="23.5" id="Dc8-Cg-jvH"/>
                             <constraint firstItem="9fS-pz-ils" firstAttribute="top" secondItem="WLF-qb-BHM" secondAttribute="bottom" constant="8" id="Dou-jM-1c4"/>
                             <constraint firstItem="Xzf-1q-YfO" firstAttribute="top" secondItem="TGD-lK-pCW" secondAttribute="bottom" constant="8" id="FmS-l4-adH"/>
                             <constraint firstItem="WLF-qb-BHM" firstAttribute="leading" secondItem="Uot-gW-IrF" secondAttribute="leading" constant="11" id="H2b-lI-LXL"/>
                             <constraint firstItem="Xzf-1q-YfO" firstAttribute="trailing" secondItem="TGD-lK-pCW" secondAttribute="trailing" id="HA1-Yx-7il"/>
+                            <constraint firstAttribute="trailing" secondItem="kzW-HH-IGC" secondAttribute="trailing" id="Jmi-5K-qwe"/>
                             <constraint firstItem="TGD-lK-pCW" firstAttribute="baseline" secondItem="aTK-4G-VmV" secondAttribute="baseline" id="LiE-d4-TPN"/>
                             <constraint firstItem="xL1-oJ-rM1" firstAttribute="leading" secondItem="WLF-qb-BHM" secondAttribute="leading" id="M5l-ij-fya"/>
                             <constraint firstItem="WLF-qb-BHM" firstAttribute="top" secondItem="Tl2-hJ-rDz" secondAttribute="bottom" constant="8" id="RjO-OB-Tzb"/>
@@ -157,13 +175,17 @@
                             <constraint firstItem="Xzf-1q-YfO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Bw6-QL-exe" secondAttribute="trailing" constant="4" id="nSN-Vf-BLO"/>
                             <constraint firstItem="NQf-Ar-Np8" firstAttribute="top" secondItem="Bw6-QL-exe" secondAttribute="bottom" constant="8" id="rDj-wD-5Mj"/>
                             <constraint firstItem="Xzf-1q-YfO" firstAttribute="baseline" secondItem="Bw6-QL-exe" secondAttribute="baseline" id="rtY-6h-2pi"/>
+                            <constraint firstItem="cLA-pG-njI" firstAttribute="leading" secondItem="Uot-gW-IrF" secondAttribute="leading" constant="11" id="uq0-F0-NfV"/>
+                            <constraint firstItem="cLA-pG-njI" firstAttribute="top" secondItem="NQf-Ar-Np8" secondAttribute="bottom" constant="8" id="wbx-lu-3pS"/>
                             <constraint firstItem="Bw6-QL-exe" firstAttribute="leading" secondItem="aTK-4G-VmV" secondAttribute="leading" id="y9B-Ra-ufy"/>
+                            <constraint firstItem="vSE-AF-9uJ" firstAttribute="top" secondItem="kzW-HH-IGC" secondAttribute="bottom" constant="20" id="zDc-wa-ZiA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="K6D-SW-VH5"/>
                     <connections>
                         <outlet property="ipAddressField" destination="TGD-lK-pCW" id="XmQ-WK-99P"/>
                         <outlet property="producerStatusLabel" destination="KyG-jn-Hmg" id="fkM-if-a1K"/>
+                        <outlet property="recordsTableView" destination="kzW-HH-IGC" id="Jgw-5n-n3n"/>
                         <outlet property="serverConnectionLabel" destination="Bw6-QL-exe" id="cbV-KB-ZiC"/>
                         <outlet property="webpageUrlField" destination="WLF-qb-BHM" id="JUT-c3-t6u"/>
                     </connections>

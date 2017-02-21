@@ -21,7 +21,8 @@ NSString* const kWebrtcControllerIceCandidatesNotification = @"kWebrtcController
 NSString* const kWebrtcControllerIceCandidatesKey = @"candidates";
 NSString* const kWebrtcControllerGotOfferNotification = @"kWebrtcControllerGotOfferNotification";
 NSString* const kWebrtcControllerOfferKey = @"offer";
-
+NSString* const kWebrtcControllerGotRecordsListNotification = @"kWebrtcControllerGotRecordsListNotification";
+NSString* const kWebrtcControllerRecordsListKey = @"kWebrtcControllerRecordsListKey";
 
 @implementation NSString (IPValidation)
 
@@ -46,6 +47,8 @@ NSString* const kWebrtcControllerOfferKey = @"offer";
 @interface WebrtcSignallingController()
 
 @property (nonatomic) SocketIOClient *socket;
+@property (nonatomic) NSString *address;
+@property (nonatomic) NSUInteger port;
 
 @end
 
@@ -79,7 +82,10 @@ NSString* const kWebrtcControllerOfferKey = @"offer";
 {
     if ([ipAddress isValidIPAddress])
     {
-        NSURL *serverURL = [NSURL URLWithString: [NSString stringWithFormat:@"http://%@:%lu", ipAddress, (unsigned long)portNum]];
+        self.address = [NSString stringWithFormat:@"http://%@", ipAddress];
+        self.port = portNum;
+        
+        NSURL *serverURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@:%lu", self.address, (unsigned long)self.port]];
         self.socket = [[SocketIOClient alloc] initWithSocketURL:serverURL config:nil];
         
         [self.socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
@@ -120,6 +126,11 @@ NSString* const kWebrtcControllerOfferKey = @"offer";
     return self.socket.socketURL.absoluteString;
 }
 
+-(void)requestRecordsList
+{
+    [self.socket emit:@"reclist" with:@[]];
+}
+
 #pragma mark - private
 -(void)setupSocketProtocol
 {
@@ -156,6 +167,13 @@ NSString* const kWebrtcControllerOfferKey = @"offer";
         [[NSNotificationCenter defaultCenter] postNotificationName:kWebrtcControllerGotOfferNotification
                                                             object:self
                                                           userInfo:@{kWebrtcControllerOfferKey:data.firstObject[@"sdp"]}];
+    }];
+    
+    [self.socket on:@"reclist" callback:^(NSArray * data, SocketAckEmitter * ack) {
+        NSLog(@"received records list: %@", data);
+        [[NSNotificationCenter defaultCenter] postNotificationName:kWebrtcControllerGotRecordsListNotification
+                                                            object:self
+                                                          userInfo:@{kWebrtcControllerRecordsListKey:data.firstObject}];
     }];
 }
 

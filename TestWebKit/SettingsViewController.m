@@ -20,6 +20,9 @@ NSString* const kWebpageUrlKey = @"webpageUrl";
 @property (weak, nonatomic) IBOutlet UILabel *serverConnectionLabel;
 @property (weak, nonatomic) IBOutlet UITextField *webpageUrlField;
 @property (weak, nonatomic) IBOutlet UILabel *producerStatusLabel;
+@property (weak, nonatomic) IBOutlet UITableView *recordsTableView;
+
+@property (nonatomic) NSArray *recordings;
 
 @end
 
@@ -36,6 +39,7 @@ NSString* const kWebpageUrlKey = @"webpageUrl";
      kWebrtcControllerProducerConnectedNotificaiton, @selector(onProducerStatusChanged:),
      kWebrtcControllerProducerDisconnectedNotification, @selector(onProducerStatusChanged:),
      kServerReconnectNeeded, @selector(onReconnectRequested:),
+     kWebrtcControllerGotRecordsListNotification, @selector(onRecordsListReceived:),
      nil];
 }
 
@@ -73,6 +77,10 @@ NSString* const kWebpageUrlKey = @"webpageUrl";
 
 - (IBAction)onWebpageUrlChanged:(id)sender {
     [[NSUserDefaults standardUserDefaults] setObject:[sender text] forKey:kWebpageUrlKey];
+}
+
+- (IBAction)getRecords:(id)sender {
+    [[WebrtcSignallingController sharedInstance] requestRecordsList];
 }
 
 -(void)connect:(NSString*)serverAddress
@@ -145,6 +153,36 @@ NSString* const kWebpageUrlKey = @"webpageUrl";
 -(void)onReconnectRequested:(NSNotification*)notification
 {
     [self connect:[[NSUserDefaults standardUserDefaults] stringForKey:kServerAddressKey]];
+}
+
+-(void)onRecordsListReceived:(NSNotification*)notification
+{
+    self.recordings = notification.userInfo[kWebrtcControllerRecordsListKey];
+    [self.recordsTableView reloadData];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.recordings.count;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                   reuseIdentifier:@"simple_cell"];
+    cell.textLabel.text = self.recordings[indexPath.row];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(onDidChooseRecord:)])
+        [self.delegate onDidChooseRecord:self.recordings[indexPath.row]];
 }
 
 @end

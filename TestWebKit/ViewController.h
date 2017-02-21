@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MobileVLCKit/MobileVLCKit.h>
 
 extern NSString* const kServerReconnectNeeded;
 
@@ -16,7 +17,7 @@ extern NSString* const kServerReconnectNeeded;
 
 @interface ViewController : UIViewController
 <SettingsViewControllerDelegate, RTCPeerConnectionDelegate,
-RTCEAGLVideoViewDelegate, UIWebViewDelegate>
+RTCEAGLVideoViewDelegate, UIWebViewDelegate, VLCMediaPlayerDelegate>
 
 @property (nonatomic, readonly) NSString *currentURL;
 

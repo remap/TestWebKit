@@ -39,6 +39,7 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
 @property (nonatomic) CADisplayLink *displayLink;
 @property (nonatomic) BOOL requestedScreenshot;
 @property (nonatomic) JSValue *screenshotCallback;
+@property (nonatomic) VLCMediaPlayer *player;
 
 @end
 
@@ -75,26 +76,16 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
      nil];
     
     self.requestedScreenshot = NO;
+    
+    // setup recordings player
+//    self.player = [[VLCMediaPlayer alloc] init];
+//    self.player.delegate = self;
+//    self.player.drawable = self.renderingView;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-// SettingsViewControllerDelegate
--(void)onDidSetSignallingServer:(NSString *)ipAddress
-{
-}
-
--(void)onDidSetUrl:(NSURL *)urlAddress
-{
-    [self.webView loadRequest:[NSURLRequest requestWithURL:urlAddress]];
-}
-
--(void)onDidChooseTestPage
-{
-    [self setupTestPage];
 }
 
 -(NSString *)currentURL
@@ -225,6 +216,50 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
         NSLog(@"couldn't save screenshot due to an error: %@", error);
 }
 
+#pragma mark - SettingsViewControllerDelegate
+-(void)onDidSetSignallingServer:(NSString *)ipAddress
+{
+}
+
+-(void)onDidSetUrl:(NSURL *)urlAddress
+{
+    [self.webView loadRequest:[NSURLRequest requestWithURL:urlAddress]];
+}
+
+-(void)onDidChooseTestPage
+{
+    [self setupTestPage];
+}
+
+-(void)onDidChooseRecord:(NSString *)record
+{
+    NSURL *recordingURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@:8000/%@",
+                                                [WebrtcSignallingController sharedInstance].address, record]];
+    
+    NSLog(@"loading recording %@", recordingURL);
+
+    [self.peerConnection close];
+    self.track = nil;
+    
+    self.player = [[VLCMediaPlayer alloc] init];
+    self.player.delegate = self;
+    self.player.drawable = self.renderingView;
+    
+    [self.player setMedia:[[VLCMedia alloc] initWithURL:recordingURL]];
+    [self.player play];
+}
+
+#pragma mark - VLCMediaPlayerDelegate
+-(void)mediaPlayerTimeChanged:(NSNotification *)aNotification
+{
+    NSLog(@"player time changed: %@", aNotification);
+}
+
+-(void)mediaPlayerStateChanged:(NSNotification *)aNotification
+{
+    NSLog(@"player state changed: %d", self.player.state);
+}
+
 #pragma mark - RTCPeerConnectionDelegate
 /** Called when the SignalingState changed. */
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
@@ -234,7 +269,8 @@ didChangeSignalingState:(RTCSignalingState)stateChanged
 }
 
 /** Called when media is received on a new stream from remote peer. */
-- (void)peerConnection:(RTCPeerConnection *)peerConnection didAddStream:(RTCMediaStream *)stream
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+          didAddStream:(RTCMediaStream *)stream
 {
     NSLog(@"new stream. audio tracks %lu, video tracks %lu",
           (unsigned long)stream.audioTracks.count, (unsigned long)stream.videoTracks.count);

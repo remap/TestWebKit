@@ -7,16 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		66D9EC9B9A1AB68028E8B258 /* Pods_TestWebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		AF141E8D1E43DC8D0004CDE1 /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF141E8C1E43DC8D0004CDE1 /* SocketIO.framework */; };
-		AF141E8E1E43DC960004CDE1 /* SocketIO.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF141E8C1E43DC8D0004CDE1 /* SocketIO.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AF141E951E44344B0004CDE1 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		AF141E981E4435710004CDE1 /* WebRTC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AF141E9A1E44378A0004CDE1 /* Pods_TestWebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */; };
 		AF1F3FE91DF8CF6900C8A857 /* NSObject+NCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1F3FE81DF8CF6900C8A857 /* NSObject+NCAdditions.m */; };
-		AF1F3FEB1DFA363400C8A857 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */; };
-		AF1F3FEC1DFA363900C8A857 /* WebRTC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF66CFBF1DF8AC8600C651EE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF66CFBE1DF8AC8600C651EE /* SettingsViewController.m */; };
 		AF66CFC21DF8AF4700C651EE /* WebrtcSignallingController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF66CFC11DF8AF4700C651EE /* WebrtcSignallingController.m */; };
+		AFA6EC4D1E57FA0900A0FCD9 /* libMobileVLCKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA6EC3B1E57F9EC00A0FCD9 /* libMobileVLCKit.a */; };
 		AFC6C61B1E42C73000EB097D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AFC6C61A1E42C73000EB097D /* Settings.bundle */; };
-		AFC6C61C1E43D31200EB097D /* Pods_TestWebKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AFE349E81DD3ED08002D2AF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE349E71DD3ED08002D2AF8 /* main.m */; };
 		AFE349EB1DD3ED08002D2AF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE349EA1DD3ED08002D2AF8 /* AppDelegate.m */; };
 		AFE349EE1DD3ED08002D2AF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE349ED1DD3ED08002D2AF8 /* ViewController.m */; };
@@ -34,9 +32,55 @@
 		AFE34A2C1DD3F445002D2AF8 /* Projector.js in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A261DD3F445002D2AF8 /* Projector.js */; };
 		AFE34A2E1DD4FC1F002D2AF8 /* Detector.js in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A2D1DD4FC1F002D2AF8 /* Detector.js */; };
 		AFE34A301DD4FCC9002D2AF8 /* disc.png in Resources */ = {isa = PBXBuildFile; fileRef = AFE34A2F1DD4FCC9002D2AF8 /* disc.png */; };
+		AFED5EA21E5C02C6005B18B2 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AFED5EA11E5C02C6005B18B2 /* libc++.tbd */; };
+		AFED5EA41E5C02DF005B18B2 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AFED5EA31E5C02DF005B18B2 /* libiconv.tbd */; };
+		AFED5EA61E5C02EB005B18B2 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AFED5EA51E5C02EB005B18B2 /* libbz2.tbd */; };
+		AFED5EA81E5C0332005B18B2 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFED5EA71E5C0332005B18B2 /* VideoToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AFA6EC3A1E57F9EC00A0FCD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = MobileVLCKit;
+		};
+		AFA6EC3C1E57F9EC00A0FCD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7D8939271B500D1C008F2B14;
+			remoteInfo = DynamicMobileVLCKit;
+		};
+		AFA6EC3E1E57F9EC00A0FCD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7D89394E1B500DBC008F2B14;
+			remoteInfo = StaticLibVLC;
+		};
+		AFA6EC401E57F9EC00A0FCD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7D1329591BA304D900BE647E;
+			remoteInfo = TVVLCKit;
+		};
+		AFA6EC421E57F9EC00A0FCD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7DB6837F1C995D39000C70BE;
+			remoteInfo = DynamicTVVLCKit;
+		};
+		AFA6EC441E57F9EC00A0FCD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7DB683C61C995E9A000C70BE;
+			remoteInfo = StaticTVLibvlc;
+		};
 		AFE349FD1DD3ED09002D2AF8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AFE349DB1DD3ED08002D2AF8 /* Project object */;
@@ -54,15 +98,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		AFB8EFF11DF8988900770AF6 /* CopyFiles */ = {
+		AF141E971E4435670004CDE1 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AF1F3FEC1DFA363900C8A857 /* WebRTC.framework in CopyFiles */,
-				AFC6C61C1E43D31200EB097D /* Pods_TestWebKit.framework in CopyFiles */,
-				AF141E8E1E43DC960004CDE1 /* SocketIO.framework in CopyFiles */,
+				AF141E981E4435710004CDE1 /* WebRTC.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,7 +113,6 @@
 /* Begin PBXFileReference section */
 		03D4AA049680C8613A25F9A9 /* Pods-TestWebKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestWebKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestWebKit/Pods-TestWebKit.debug.xcconfig"; sourceTree = "<group>"; };
 		A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestWebKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AF141E8C1E43DC8D0004CDE1 /* SocketIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketIO.framework; path = "../../../Library/Developer/Xcode/DerivedData/TestWebKit-conihtkxdqagpsegbyxnnenxrtyp/Build/Products/Release-iphoneos/Socket.IO-Client-Swift/SocketIO.framework"; sourceTree = "<group>"; };
 		AF1F3FE71DF8CF6900C8A857 /* NSObject+NCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NCAdditions.h"; sourceTree = "<group>"; };
 		AF1F3FE81DF8CF6900C8A857 /* NSObject+NCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NCAdditions.m"; sourceTree = "<group>"; };
 		AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebRTC.framework; path = "../ndnrtc-thirdparty/webrtc-ios/src/out/ios_release/WebRTC.framework"; sourceTree = "<group>"; };
@@ -79,6 +120,7 @@
 		AF66CFBE1DF8AC8600C651EE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AF66CFC01DF8AF4700C651EE /* WebrtcSignallingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebrtcSignallingController.h; sourceTree = "<group>"; };
 		AF66CFC11DF8AF4700C651EE /* WebrtcSignallingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebrtcSignallingController.m; sourceTree = "<group>"; };
+		AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MobileVLCKit.xcodeproj; path = ../VLCKit/MobileVLCKit.xcodeproj; sourceTree = "<group>"; };
 		AFC6C61A1E42C73000EB097D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		AFE349E31DD3ED08002D2AF8 /* TestWebKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestWebKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFE349E71DD3ED08002D2AF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -105,6 +147,10 @@
 		AFE34A261DD3F445002D2AF8 /* Projector.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Projector.js; sourceTree = "<group>"; };
 		AFE34A2D1DD4FC1F002D2AF8 /* Detector.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Detector.js; sourceTree = "<group>"; };
 		AFE34A2F1DD4FCC9002D2AF8 /* disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disc.png; sourceTree = "<group>"; };
+		AFED5EA11E5C02C6005B18B2 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		AFED5EA31E5C02DF005B18B2 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		AFED5EA51E5C02EB005B18B2 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		AFED5EA71E5C0332005B18B2 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		DBF82CEA0B9C5D7BE8D15EDA /* Pods-TestWebKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestWebKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestWebKit/Pods-TestWebKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,9 +159,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66D9EC9B9A1AB68028E8B258 /* Pods_TestWebKit.framework in Frameworks */,
-				AF1F3FEB1DFA363400C8A857 /* WebRTC.framework in Frameworks */,
-				AF141E8D1E43DC8D0004CDE1 /* SocketIO.framework in Frameworks */,
+				AFED5EA81E5C0332005B18B2 /* VideoToolbox.framework in Frameworks */,
+				AFED5EA61E5C02EB005B18B2 /* libbz2.tbd in Frameworks */,
+				AFED5EA41E5C02DF005B18B2 /* libiconv.tbd in Frameworks */,
+				AFED5EA21E5C02C6005B18B2 /* libc++.tbd in Frameworks */,
+				AFA6EC4D1E57FA0900A0FCD9 /* libMobileVLCKit.a in Frameworks */,
+				AF141E951E44344B0004CDE1 /* WebRTC.framework in Frameworks */,
+				AF141E9A1E44378A0004CDE1 /* Pods_TestWebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,11 +189,28 @@
 		AF1972421DEE04A20046209D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AF141E8C1E43DC8D0004CDE1 /* SocketIO.framework */,
+				AFED5EA71E5C0332005B18B2 /* VideoToolbox.framework */,
+				AFED5EA51E5C02EB005B18B2 /* libbz2.tbd */,
+				AFED5EA31E5C02DF005B18B2 /* libiconv.tbd */,
+				AFED5EA11E5C02C6005B18B2 /* libc++.tbd */,
+				AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */,
 				AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */,
 				A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AFA6EC321E57F9EC00A0FCD9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AFA6EC3B1E57F9EC00A0FCD9 /* libMobileVLCKit.a */,
+				AFA6EC3D1E57F9EC00A0FCD9 /* DynamicMobileVLCKit.framework */,
+				AFA6EC3F1E57F9EC00A0FCD9 /* libStaticLibVLC.a */,
+				AFA6EC411E57F9EC00A0FCD9 /* libTVVLCKit.a */,
+				AFA6EC431E57F9EC00A0FCD9 /* DynamicTVVLCKit.framework */,
+				AFA6EC451E57F9EC00A0FCD9 /* libStaticTVLibvlc.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		AFE349DA1DD3ED08002D2AF8 = {
@@ -277,8 +344,8 @@
 				01ADE7399231475A33776845 /* [CP] Check Pods Manifest.lock */,
 				AFE349DF1DD3ED08002D2AF8 /* Sources */,
 				AFE349E01DD3ED08002D2AF8 /* Frameworks */,
+				AF141E971E4435670004CDE1 /* CopyFiles */,
 				AFE349E11DD3ED08002D2AF8 /* Resources */,
-				AFB8EFF11DF8988900770AF6 /* CopyFiles */,
 				287240202CA1C128D923DC6E /* [CP] Embed Pods Frameworks */,
 				3EF6C2BAD02961B0CDE655D1 /* [CP] Copy Pods Resources */,
 			);
@@ -366,6 +433,12 @@
 			mainGroup = AFE349DA1DD3ED08002D2AF8;
 			productRefGroup = AFE349E41DD3ED08002D2AF8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AFA6EC321E57F9EC00A0FCD9 /* Products */;
+					ProjectRef = AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				AFE349E21DD3ED08002D2AF8 /* TestWebKit */,
@@ -374,6 +447,51 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		AFA6EC3B1E57F9EC00A0FCD9 /* libMobileVLCKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMobileVLCKit.a;
+			remoteRef = AFA6EC3A1E57F9EC00A0FCD9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AFA6EC3D1E57F9EC00A0FCD9 /* DynamicMobileVLCKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DynamicMobileVLCKit.framework;
+			remoteRef = AFA6EC3C1E57F9EC00A0FCD9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AFA6EC3F1E57F9EC00A0FCD9 /* libStaticLibVLC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libStaticLibVLC.a;
+			remoteRef = AFA6EC3E1E57F9EC00A0FCD9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AFA6EC411E57F9EC00A0FCD9 /* libTVVLCKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTVVLCKit.a;
+			remoteRef = AFA6EC401E57F9EC00A0FCD9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AFA6EC431E57F9EC00A0FCD9 /* DynamicTVVLCKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DynamicTVVLCKit.framework;
+			remoteRef = AFA6EC421E57F9EC00A0FCD9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AFA6EC451E57F9EC00A0FCD9 /* libStaticTVLibvlc.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libStaticTVLibvlc.a;
+			remoteRef = AFA6EC441E57F9EC00A0FCD9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AFE349E11DD3ED08002D2AF8 /* Resources */ = {
@@ -530,8 +648,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -578,8 +695,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -619,18 +735,23 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 03D4AA049680C8613A25F9A9 /* Pods-TestWebKit.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libc++";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = SC33BJMPXV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/vlc";
 				INFOPLIST_FILE = TestWebKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu-ucla-remap-bee-test-webkit";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.ucla.remap.bee.test-webkit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -638,19 +759,26 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DBF82CEA0B9C5D7BE8D15EDA /* Pods-TestWebKit.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Peter Gusev (SC33BJMPXV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = SC33BJMPXV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../VLCKit/Headers/Public/",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/vlc";
 				INFOPLIST_FILE = TestWebKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "edu-ucla-remap-bee-test-webkit";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.ucla.remap.bee.test-webkit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
