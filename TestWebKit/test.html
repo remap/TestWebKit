@@ -62,7 +62,7 @@
             //                      function onPlaybackError(){});
             // iosapp.stopPlayback();
             // iosapp.pausePlayback();
-            // iosapp.seekPlayback(normalizedValue);
+            // iosapp.seekPlayback(timeInMilliseconds);
             
             // for debug purposes
             // console.log("test log message!");
@@ -76,6 +76,44 @@
             //    if (n > 0) setTimeout(f, 1000);
             //}
             //setTimeout(f, 3000);
+
+            //setTimeout(function(){
+            //           console.log("starting recording");
+            //           iosapp.startRecording();
+            //           }, 1000);
+            //setTimeout(function (){
+            //           console.log("stop recording");
+            //           iosapp.stopRecording();
+            //           },
+            //           6000);
+            //setTimeout(function (){
+            //           iosapp.getRecordings(function(list){
+            //                                    console.log("received recordings list ");
+            //                                    for (idx in list) console.log(list[idx]);
+            //                                });
+            //           }, 7000);
+            
+            // setTimeout(function(){
+            //            iosapp.getRecordings(function(list){
+            //                                 console.log("received recordings list ");
+            //                                 console.log("request playback of "+list[list.length-1]);
+            //                                 iosapp.startPlayback(list[list.length-1],
+            //                                                      function () {
+            //                                                         console.log("playback started");
+            //                                                         setTimeout(function (){
+            //                                                                    iosapp.pausePlayback();
+            //                                                                 }, 2000);
+            //                                                         setTimeout(function (){
+            //                                                                    iosapp.pausePlayback();
+            //                                                                 }, 4000);
+            //                                                      },
+            //                                                      function (progress) { console.log("progress "+progress); },
+            //                                                      function () { console.log("recording playback finished"); },
+            //                                                      function () { console.log("error"); });
+            //                                 });
+            //            }
+            //            ,1000);
+
 
             if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
             

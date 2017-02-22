@@ -206,13 +206,8 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
     self.jsContext[kJsHookApp][kJsHookSeekPlayback] = ^(JSValue *value){
         if (self.player)
         {
-            if (self.player.media.length)
-            {
-                double frac = [value toDouble];
-                double timeMs = ((double)self.player.media.length.intValue)*frac;
-                VLCTime *seekTime = [VLCTime timeWithInt:(int)timeMs];
-                [self.player setTime:seekTime];
-            }
+            VLCTime *seekTime = [VLCTime timeWithInt:[value toInt32]];
+            [self.player setTime:seekTime];
         }
         else
             NSLog(@"requested pause, but there is no player instance. did you request playback?");
@@ -319,7 +314,14 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
     self.player.delegate = self;
     self.player.drawable = self.renderingView;
     
-    [self.player setMedia:[[VLCMedia alloc] initWithURL:recordingURL]];
+    VLCMedia *media = [[VLCMedia alloc] initWithURL:recordingURL];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [media lengthWaitUntilDate:[NSDate dateWithTimeIntervalSinceNow:10.]];
+        NSLog(@"received media length: %@", media.length);
+    });
+    
+    [self.player setMedia:media];
     [self.player play];
     
     [self.loadingIndicator startAnimating];
@@ -328,11 +330,16 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
 #pragma mark - VLCMediaPlayerDelegate
 -(void)mediaPlayerTimeChanged:(NSNotification *)aNotification
 {
-    NSLog(@"player time changed: %@", aNotification);
+    // proff check for onStartCallback
+    if (self.jsCallbacks[kJsStartPlaybackStartCallback])
+    {
+        [self.jsCallbacks[kJsStartPlaybackStartCallback] callWithArguments:@[]];
+        [self.jsCallbacks removeObjectForKey:kJsStartPlaybackStartCallback];
+    }
+    
     if (self.jsCallbacks[kJsTimeChangedCallback])
     {
-        double progress = (double)(self.player.time.intValue)/(double)(self.player.time.intValue+self.player.remainingTime.intValue);
-        [self.jsCallbacks[kJsTimeChangedCallback] callWithArguments:@[[NSNumber numberWithDouble:progress]] ];
+        [self.jsCallbacks[kJsTimeChangedCallback] callWithArguments:@[[NSNumber numberWithInt:self.player.time.intValue]] ];
     }
 }
 
@@ -343,8 +350,10 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
     if (self.player.state == VLCMediaPlayerStatePlaying)
     {
         if (self.jsCallbacks[kJsStartPlaybackStartCallback])
+        {
             [self.jsCallbacks[kJsStartPlaybackStartCallback] callWithArguments:@[]];
-        [self.loadingIndicator stopAnimating];
+            [self.jsCallbacks removeObjectForKey:kJsStartPlaybackStartCallback];
+        }
     }
     
     if (self.player.state == VLCMediaPlayerStateError)
@@ -360,6 +369,9 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
         if (self.jsCallbacks[kJsPlaybackFinishedCallback])
             [self.jsCallbacks[kJsPlaybackFinishedCallback] callWithArguments:@[]];
     }
+    
+    [self.loadingIndicator stopAnimating];
+    [self.loadingIndicator setHidden:YES];
 }
 
 #pragma mark - RTCPeerConnectionDelegate
@@ -378,6 +390,7 @@ didChangeSignalingState:(RTCSignalingState)stateChanged
           (unsigned long)stream.audioTracks.count, (unsigned long)stream.videoTracks.count);
     self.track = stream.videoTracks.lastObject;
     [self.track addRenderer:self.renderingView];
+    [self.loadingIndicator stopAnimating];
     
     NSError *err = nil;
     [[AVAudioSession sharedInstance] setActive:NO error:&err];
