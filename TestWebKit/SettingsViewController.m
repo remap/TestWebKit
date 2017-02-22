@@ -109,7 +109,7 @@ NSString* const kWebpageUrlKey = @"webpageUrl";
                                                           self.producerStatusLabel.textColor = [UIColor blackColor];
                                                       }
                                                       else
-                                                      self.serverConnectionLabel.text = @"connected";
+                                                          self.serverConnectionLabel.text = @"connected";
                                                   });
                                                   
                                               }];

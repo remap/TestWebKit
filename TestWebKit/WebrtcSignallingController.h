@@ -38,5 +38,7 @@ extern NSString* const kWebrtcControllerRecordsListKey;
 -(void)sendSdpAnswer:(NSDictionary*)sdp;
 -(void)sendIceCandidate:(NSDictionary*)ice;
 -(void)requestRecordsList;
+-(void)sendStartRecording;
+-(void)sendStopRecording;
 
 @end

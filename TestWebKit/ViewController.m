@@ -25,6 +25,23 @@ NSString* const kJsHookLoadURL = @"loadUrl";    // no arguments - loads previous
 NSString* const kJsHookSetVideoSize = @"setVideoSize";  // 2 arguments - width and height (normalized, scale [0,1])
 NSString* const kJsHookOffsetVideo = @"setVideoOffset"; // 2 arguments - xoffset and yoffset (normalized, scale [0,1])
 NSString* const kJsHookCaptureScreenshot = @"captureScreen"; // 1 argument - callback that takes base64-encoded image
+NSString* const kJsCaptureScreenshotCallback = @"captureScreenCallback";
+
+NSString* const kJsHookStartRecording = @"startRecording";
+NSString* const kJsHookStopRecording = @"stopRecording";
+
+NSString* const kJsHookGetRecordings = @"getRecordings"; // 1 argument - callback that takes list of recordings
+NSString* const kJsGetRecordingsCallback = @"getRecordingsCallback";
+
+NSString* const kJsHookStartPlayback = @"startPlayback"; // 4 arguemnts - callbacks: onPlaybackStart, onTimeChanged, onPlaybackFinished, onError
+NSString* const kJsStartPlaybackStartCallback = @"onPlaybackStart";
+NSString* const kJsTimeChangedCallback = @"onTimeChanged";
+NSString* const kJsPlaybackFinishedCallback = @"onPlaybackFinished";
+NSString* const kJsPlaybackErrorCallback = @"onPlaybackError";
+
+NSString* const kJsHookStopPlayback = @"stopPlayback";
+NSString* const kJsHookPausePlayback = @"pausePlayback";
+NSString* const kJsHookSeekPlayback = @"seekPlayback"; // 1 argument - normalized [0 to 1] playback position within a record
 
 static RTCPeerConnectionFactory *peerConnectionFactory;
 
@@ -38,8 +55,10 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
 @property (nonatomic) JSContext *jsContext;
 @property (nonatomic) CADisplayLink *displayLink;
 @property (nonatomic) BOOL requestedScreenshot;
-@property (nonatomic) JSValue *screenshotCallback;
+//@property (nonatomic) JSValue *screenshotCallback;
+@property (nonatomic) NSMutableDictionary *jsCallbacks;
 @property (nonatomic) VLCMediaPlayer *player;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 @end
 
@@ -47,6 +66,8 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.jsCallbacks = [NSMutableDictionary dictionary];
     
     // set webview bg color
     // (make sure your html is transparent also)
@@ -73,14 +94,10 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
      kWebrtcControllerProducerConnectedNotificaiton, @selector(onProducerStateChanged:),
      kWebrtcControllerGotOfferNotification, @selector(onReceivedOffer:),
      kWebrtcControllerIceCandidatesNotification, @selector(onReceivedIceCandidate:),
+     kWebrtcControllerGotRecordsListNotification, @selector(onReceivedRecordingsList:),
      nil];
     
     self.requestedScreenshot = NO;
-    
-    // setup recordings player
-//    self.player = [[VLCMediaPlayer alloc] init];
-//    self.player.delegate = self;
-//    self.player.drawable = self.renderingView;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -141,9 +158,64 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
     };
     
     self.jsContext[kJsHookApp][kJsHookCaptureScreenshot] = ^(JSValue *callback){
-        self.screenshotCallback = callback;
+        self.jsCallbacks[kJsCaptureScreenshotCallback] = callback;
         self.requestedScreenshot = YES;
         [self setupCaLink];
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookStartRecording] = ^(){
+        [[WebrtcSignallingController sharedInstance] sendStartRecording];
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookStopRecording] = ^(){
+        [[WebrtcSignallingController sharedInstance] sendStopRecording];
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookGetRecordings] = ^(JSValue *callback){
+        self.jsCallbacks[kJsGetRecordingsCallback] = callback;
+        [[WebrtcSignallingController sharedInstance] requestRecordsList];
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookStartPlayback] = ^(JSValue *recording, JSValue *onStart, JSValue *onTimeChanged,
+                                                         JSValue *onFinished, JSValue *onError){
+        self.jsCallbacks[kJsStartPlaybackStartCallback] = onStart;
+        self.jsCallbacks[kJsTimeChangedCallback] = onTimeChanged;
+        self.jsCallbacks[kJsPlaybackFinishedCallback] = onFinished;
+        self.jsCallbacks[kJsPlaybackErrorCallback] = onError;
+        
+        [self onDidChooseRecord:[recording toString]];
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookStopPlayback] = ^(){
+        if (self.player)
+        {
+            [self.player stop];
+            self.player = nil;
+        }
+        else
+            NSLog(@"requested stop, but there is no player instance. did you request playback?");
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookPausePlayback] = ^(){
+        if (self.player)
+            [self.player pause];
+        else
+            NSLog(@"requested pause, but there is no player instance. did you request playback?");
+    };
+    
+    self.jsContext[kJsHookApp][kJsHookSeekPlayback] = ^(JSValue *value){
+        if (self.player)
+        {
+            if (self.player.media.length)
+            {
+                double frac = [value toDouble];
+                double timeMs = ((double)self.player.media.length.intValue)*frac;
+                VLCTime *seekTime = [VLCTime timeWithInt:(int)timeMs];
+                [self.player setTime:seekTime];
+            }
+        }
+        else
+            NSLog(@"requested pause, but there is no player instance. did you request playback?");
     };
 }
 
@@ -204,8 +276,9 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
     NSData *data = UIImageJPEGRepresentation(img, 1.);
     NSString *base64Data = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     
-    [self.screenshotCallback callWithArguments:@[[NSString stringWithFormat:@"data:image/jpeg;base64,%@", base64Data]]];
-    self.screenshotCallback = nil;
+    [self.jsCallbacks[kJsCaptureScreenshotCallback]
+     callWithArguments:@[[NSString stringWithFormat:@"data:image/jpeg;base64,%@", base64Data]]];
+    [self.jsCallbacks removeObjectForKey:kJsCaptureScreenshotCallback];
 }
 
 - (void)               image: (UIImage *) image
@@ -239,6 +312,7 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
     NSLog(@"loading recording %@", recordingURL);
 
     [self.peerConnection close];
+    self.peerConnection = nil;
     self.track = nil;
     
     self.player = [[VLCMediaPlayer alloc] init];
@@ -247,17 +321,45 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
     
     [self.player setMedia:[[VLCMedia alloc] initWithURL:recordingURL]];
     [self.player play];
+    
+    [self.loadingIndicator startAnimating];
 }
 
 #pragma mark - VLCMediaPlayerDelegate
 -(void)mediaPlayerTimeChanged:(NSNotification *)aNotification
 {
     NSLog(@"player time changed: %@", aNotification);
+    if (self.jsCallbacks[kJsTimeChangedCallback])
+    {
+        double progress = (double)(self.player.time.intValue)/(double)(self.player.time.intValue+self.player.remainingTime.intValue);
+        [self.jsCallbacks[kJsTimeChangedCallback] callWithArguments:@[[NSNumber numberWithDouble:progress]] ];
+    }
 }
 
 -(void)mediaPlayerStateChanged:(NSNotification *)aNotification
 {
     NSLog(@"player state changed: %d", self.player.state);
+    
+    if (self.player.state == VLCMediaPlayerStatePlaying)
+    {
+        if (self.jsCallbacks[kJsStartPlaybackStartCallback])
+            [self.jsCallbacks[kJsStartPlaybackStartCallback] callWithArguments:@[]];
+        [self.loadingIndicator stopAnimating];
+    }
+    
+    if (self.player.state == VLCMediaPlayerStateError)
+    {
+        NSLog(@"playback error");
+        if (self.jsCallbacks[kJsPlaybackErrorCallback])
+            [self.jsCallbacks[kJsPlaybackErrorCallback] callWithArguments:@[]];
+    }
+    
+    if (self.player.state == VLCMediaPlayerStateStopped)
+    {
+        NSLog(@"playback stopped");
+        if (self.jsCallbacks[kJsPlaybackFinishedCallback])
+            [self.jsCallbacks[kJsPlaybackFinishedCallback] callWithArguments:@[]];
+    }
 }
 
 #pragma mark - RTCPeerConnectionDelegate
@@ -345,7 +447,11 @@ didRemoveIceCandidates:(NSArray<RTCIceCandidate *> *)candidates
         self.peerConnection = nil;
     }
     else
+    {
+        [self.player stop];
+        self.player = nil;
         [self setupPeerConnection];
+    }
 }
 
 -(void)onReceivedOffer:(NSNotification*)notification
@@ -386,6 +492,16 @@ didRemoveIceCandidates:(NSArray<RTCIceCandidate *> *)candidates
               (long)self.peerConnection.iceGatheringState);
         
         [self.peerConnection addIceCandidate:c];
+    }
+}
+
+-(void)onReceivedRecordingsList:(NSNotification*)notification
+{
+    if (self.jsCallbacks[kJsGetRecordingsCallback])
+    {
+        [self.jsCallbacks[kJsGetRecordingsCallback]
+         callWithArguments:@[notification.userInfo[kWebrtcControllerRecordsListKey]]];
+        [self.jsCallbacks removeObjectForKey:kJsGetRecordingsCallback];
     }
 }
 

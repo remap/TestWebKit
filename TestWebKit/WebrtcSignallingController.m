@@ -131,6 +131,16 @@ NSString* const kWebrtcControllerRecordsListKey = @"kWebrtcControllerRecordsList
     [self.socket emit:@"reclist" with:@[]];
 }
 
+-(void)sendStartRecording
+{
+    [self.socket emit:@"recstart" with:@[]];
+}
+
+-(void)sendStopRecording
+{
+    [self.socket emit:@"recstop" with:@[]];
+}
+
 #pragma mark - private
 -(void)setupSocketProtocol
 {
