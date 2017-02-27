@@ -163,8 +163,8 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
         [self setupCaLink];
     };
     
-    self.jsContext[kJsHookApp][kJsHookStartRecording] = ^(){
-        [[WebrtcSignallingController sharedInstance] sendStartRecording];
+    self.jsContext[kJsHookApp][kJsHookStartRecording] = ^(JSValue *recordingName){
+        [[WebrtcSignallingController sharedInstance] sendStartRecording: [recordingName toString]];
     };
     
     self.jsContext[kJsHookApp][kJsHookStopRecording] = ^(){
