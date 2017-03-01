@@ -314,6 +314,8 @@ static RTCPeerConnectionFactory *peerConnectionFactory;
     self.player.delegate = self;
     self.player.drawable = self.renderingView;
     
+    [[WebrtcSignallingController sharedInstance] requestRecording: [recordingURL absoluteString]];
+    
     VLCMedia *media = [[VLCMedia alloc] initWithURL:recordingURL];
     
     dispatch_async(dispatch_get_main_queue(), ^{
