@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AF1F3FE91DF8CF6900C8A857 /* NSObject+NCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1F3FE81DF8CF6900C8A857 /* NSObject+NCAdditions.m */; };
-		AF34135E1E5C0D820061F5B3 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AF3413651E5C0D870061F5B3 /* Pods_TestWebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		AF3413671E5C0E270061F5B3 /* WebRTC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF66CFBF1DF8AC8600C651EE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF66CFBE1DF8AC8600C651EE /* SettingsViewController.m */; };
 		AF66CFC21DF8AF4700C651EE /* WebrtcSignallingController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF66CFC11DF8AF4700C651EE /* WebrtcSignallingController.m */; };
 		AFA6EC4D1E57FA0900A0FCD9 /* libMobileVLCKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA6EC3B1E57F9EC00A0FCD9 /* libMobileVLCKit.a */; };
@@ -36,6 +34,9 @@
 		AFED5EA41E5C02DF005B18B2 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AFED5EA31E5C02DF005B18B2 /* libiconv.tbd */; };
 		AFED5EA61E5C02EB005B18B2 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AFED5EA51E5C02EB005B18B2 /* libbz2.tbd */; };
 		AFED5EA81E5C0332005B18B2 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFED5EA71E5C0332005B18B2 /* VideoToolbox.framework */; };
+		D382C32A1E7CA3DE0089EEA6 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D382C3291E7CA3DE0089EEA6 /* WebRTC.framework */; };
+		D382C32B1E7CB0F90089EEA6 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D382C3291E7CA3DE0089EEA6 /* WebRTC.framework */; };
+		D382C32C1E7CB0F90089EEA6 /* WebRTC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D382C3291E7CA3DE0089EEA6 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +105,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AF3413671E5C0E270061F5B3 /* WebRTC.framework in CopyFiles */,
+				D382C32C1E7CB0F90089EEA6 /* WebRTC.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +116,6 @@
 		A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestWebKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF1F3FE71DF8CF6900C8A857 /* NSObject+NCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NCAdditions.h"; sourceTree = "<group>"; };
 		AF1F3FE81DF8CF6900C8A857 /* NSObject+NCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NCAdditions.m"; sourceTree = "<group>"; };
-		AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebRTC.framework; path = "../ndnrtc-thirdparty/webrtc-ios/src/out/ios_release/WebRTC.framework"; sourceTree = "<group>"; };
 		AF66CFBD1DF8AC8600C651EE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AF66CFBE1DF8AC8600C651EE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AF66CFC01DF8AF4700C651EE /* WebrtcSignallingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebrtcSignallingController.h; sourceTree = "<group>"; };
@@ -151,6 +151,7 @@
 		AFED5EA31E5C02DF005B18B2 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		AFED5EA51E5C02EB005B18B2 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		AFED5EA71E5C0332005B18B2 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		D382C3291E7CA3DE0089EEA6 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
 		DBF82CEA0B9C5D7BE8D15EDA /* Pods-TestWebKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestWebKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestWebKit/Pods-TestWebKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,9 +161,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF3413651E5C0D870061F5B3 /* Pods_TestWebKit.framework in Frameworks */,
-				AF34135E1E5C0D820061F5B3 /* WebRTC.framework in Frameworks */,
 				AFED5EA81E5C0332005B18B2 /* VideoToolbox.framework in Frameworks */,
 				AFED5EA61E5C02EB005B18B2 /* libbz2.tbd in Frameworks */,
+				D382C32B1E7CB0F90089EEA6 /* WebRTC.framework in Frameworks */,
+				D382C32A1E7CA3DE0089EEA6 /* WebRTC.framework in Frameworks */,
 				AFED5EA41E5C02DF005B18B2 /* libiconv.tbd in Frameworks */,
 				AFED5EA21E5C02C6005B18B2 /* libc++.tbd in Frameworks */,
 				AFA6EC4D1E57FA0900A0FCD9 /* libMobileVLCKit.a in Frameworks */,
@@ -189,12 +191,12 @@
 		AF1972421DEE04A20046209D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D382C3291E7CA3DE0089EEA6 /* WebRTC.framework */,
 				AFED5EA71E5C0332005B18B2 /* VideoToolbox.framework */,
 				AFED5EA51E5C02EB005B18B2 /* libbz2.tbd */,
 				AFED5EA31E5C02DF005B18B2 /* libiconv.tbd */,
 				AFED5EA11E5C02C6005B18B2 /* libc++.tbd */,
 				AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */,
-				AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */,
 				A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */,
 			);
 			name = Frameworks;
@@ -344,8 +346,8 @@
 				01ADE7399231475A33776845 /* [CP] Check Pods Manifest.lock */,
 				AFE349DF1DD3ED08002D2AF8 /* Sources */,
 				AFE349E01DD3ED08002D2AF8 /* Frameworks */,
-				AFE349E11DD3ED08002D2AF8 /* Resources */,
 				287240202CA1C128D923DC6E /* [CP] Embed Pods Frameworks */,
+				AFE349E11DD3ED08002D2AF8 /* Resources */,
 				3EF6C2BAD02961B0CDE655D1 /* [CP] Copy Pods Resources */,
 				AF3413661E5C0E1F0061F5B3 /* CopyFiles */,
 			);
