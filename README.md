@@ -5,7 +5,7 @@ TestWebKit is a test iOS application that allows to receive live video streams f
 * MobileVLC Kit
 * SocketIO framework
 
-MobileVLC Kit and SocketIO framework are handled automatically using Cocoapods. However, if you don’t have binary distribution of this repo, you’ll need to build WebRTC for iOS from sources. See webrtc.org for more details on how to do it.
+MobileVLC Kit and SocketIO framework are handled automatically using Cocoapods. Compiled WebRTC framework for iOS comes with this repo. It is, however, an old build (2017) but it works. If you need to update WebRTC framework for any reason, you’ll need to build it from source yourself. Consulr webrtc.org on more information how to do it.
 
 ### Project setup
 The *TestWebKit.xcworkspace* workspace includes subproject for TestWebKit and Cocoapods dependency project. Before trying to build, go to the repo directory in the terminal and type:
@@ -39,4 +39,3 @@ In order to deploy the project:
 
 > ⚠️
 > If you publish your app into App Store Connect, you’ll need to update project’s build number before you build app for distribution.
-
