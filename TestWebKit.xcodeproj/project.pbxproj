@@ -13,7 +13,6 @@
 		AF3413671E5C0E270061F5B3 /* WebRTC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF66CFBF1DF8AC8600C651EE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF66CFBE1DF8AC8600C651EE /* SettingsViewController.m */; };
 		AF66CFC21DF8AF4700C651EE /* WebrtcSignallingController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF66CFC11DF8AF4700C651EE /* WebrtcSignallingController.m */; };
-		AFA6EC4D1E57FA0900A0FCD9 /* libMobileVLCKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA6EC3B1E57F9EC00A0FCD9 /* libMobileVLCKit.a */; };
 		AFC6C61B1E42C73000EB097D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AFC6C61A1E42C73000EB097D /* Settings.bundle */; };
 		AFE349E81DD3ED08002D2AF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE349E71DD3ED08002D2AF8 /* main.m */; };
 		AFE349EB1DD3ED08002D2AF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE349EA1DD3ED08002D2AF8 /* AppDelegate.m */; };
@@ -39,6 +38,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AF103ECE2395626B00F476C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA0301CB20ADFD2500452BB8;
+			remoteInfo = MobileVLCKitTests;
+		};
+		AF103ED02395626B00F476C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CAA03D0720C8DCDA001764DA;
+			remoteInfo = TVVLCKitTests;
+		};
 		AFA6EC3A1E57F9EC00A0FCD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AFA6EC311E57F9EC00A0FCD9 /* MobileVLCKit.xcodeproj */;
@@ -165,7 +178,6 @@
 				AFED5EA61E5C02EB005B18B2 /* libbz2.tbd in Frameworks */,
 				AFED5EA41E5C02DF005B18B2 /* libiconv.tbd in Frameworks */,
 				AFED5EA21E5C02C6005B18B2 /* libc++.tbd in Frameworks */,
-				AFA6EC4D1E57FA0900A0FCD9 /* libMobileVLCKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +221,8 @@
 				AFA6EC411E57F9EC00A0FCD9 /* libTVVLCKit.a */,
 				AFA6EC431E57F9EC00A0FCD9 /* DynamicTVVLCKit.framework */,
 				AFA6EC451E57F9EC00A0FCD9 /* libStaticTVLibvlc.a */,
+				AF103ECF2395626B00F476C0 /* MobileVLCKitTests.xctest */,
+				AF103ED12395626B00F476C0 /* TVVLCKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -345,9 +359,8 @@
 				AFE349DF1DD3ED08002D2AF8 /* Sources */,
 				AFE349E01DD3ED08002D2AF8 /* Frameworks */,
 				AFE349E11DD3ED08002D2AF8 /* Resources */,
-				287240202CA1C128D923DC6E /* [CP] Embed Pods Frameworks */,
-				3EF6C2BAD02961B0CDE655D1 /* [CP] Copy Pods Resources */,
 				AF3413661E5C0E1F0061F5B3 /* CopyFiles */,
+				594263BFD0BB14BA11290E9C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -449,6 +462,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		AF103ECF2395626B00F476C0 /* MobileVLCKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MobileVLCKitTests.xctest;
+			remoteRef = AF103ECE2395626B00F476C0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AF103ED12395626B00F476C0 /* TVVLCKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TVVLCKitTests.xctest;
+			remoteRef = AF103ED02395626B00F476C0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		AFA6EC3B1E57F9EC00A0FCD9 /* libMobileVLCKit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -537,43 +564,36 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TestWebKit-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		287240202CA1C128D923DC6E /* [CP] Embed Pods Frameworks */ = {
+		594263BFD0BB14BA11290E9C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TestWebKit/Pods-TestWebKit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TestWebKit/Pods-TestWebKit-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3EF6C2BAD02961B0CDE655D1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TestWebKit/Pods-TestWebKit-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TestWebKit/Pods-TestWebKit-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

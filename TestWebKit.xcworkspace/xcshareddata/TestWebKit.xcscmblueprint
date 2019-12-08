@@ -4,12 +4,12 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "8FFACF9194D48576A22F6F0C4F6B4F0BA1ABFC64" : 9223372036854775807,
+    "0EFDF2D073A77BC2CB2CF6173E0F3A830E66F8AF" : 9223372036854775807,
     "54D9B4FAA046C2C7F0E6588646F7ACDC98FF079A" : 9223372036854775807
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C9AC32B8-C72E-49AA-80C6-1608B8CC8B34",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8DDEC234-9491-42DE-8170-F76F175907C5",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "8FFACF9194D48576A22F6F0C4F6B4F0BA1ABFC64" : "ndnrtc-thirdparty\/webrtc-ios\/src\/",
+    "0EFDF2D073A77BC2CB2CF6173E0F3A830E66F8AF" : "VLCKit\/",
     "54D9B4FAA046C2C7F0E6588646F7ACDC98FF079A" : "TestWebKit\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "TestWebKit",
@@ -17,14 +17,14 @@
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TestWebKit.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/code.videolan.org\/videolan\/VLCKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0EFDF2D073A77BC2CB2CF6173E0F3A830E66F8AF"
+    },
+    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/remap\/TestWebKit.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "54D9B4FAA046C2C7F0E6588646F7ACDC98FF079A"
-    },
-    {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/chromium.googlesource.com\/external\/webrtc.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8FFACF9194D48576A22F6F0C4F6B4F0BA1ABFC64"
     }
   ]
 }

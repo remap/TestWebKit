@@ -46,6 +46,7 @@ NSString* const kWebrtcControllerRecordsListKey = @"kWebrtcControllerRecordsList
 //******************************************************************************
 @interface WebrtcSignallingController()
 
+@property (nonatomic) SocketManager *socketManager;
 @property (nonatomic) SocketIOClient *socket;
 @property (nonatomic) NSString *address;
 @property (nonatomic) NSUInteger port;
@@ -86,7 +87,8 @@ NSString* const kWebrtcControllerRecordsListKey = @"kWebrtcControllerRecordsList
         self.port = portNum;
         
         NSURL *serverURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@:%lu", self.address, (unsigned long)self.port]];
-        self.socket = [[SocketIOClient alloc] initWithSocketURL:serverURL config:nil];
+        self.socketManager = [[SocketManager alloc] initWithSocketURL:serverURL config:nil];
+        self.socket = self.socketManager.defaultSocket;
         
         [self.socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
             NSLog(@"socket connected");
@@ -123,7 +125,7 @@ NSString* const kWebrtcControllerRecordsListKey = @"kWebrtcControllerRecordsList
 
 -(NSString *)serverAddress
 {
-    return self.socket.socketURL.absoluteString;
+    return self.socketManager.socketURL.absoluteString;
 }
 
 -(void)requestRecordsList
