@@ -128,7 +128,7 @@
 		A81735FE928A0006F26C17BA /* Pods_TestWebKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestWebKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF1F3FE71DF8CF6900C8A857 /* NSObject+NCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NCAdditions.h"; sourceTree = "<group>"; };
 		AF1F3FE81DF8CF6900C8A857 /* NSObject+NCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NCAdditions.m"; sourceTree = "<group>"; };
-		AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebRTC.framework; path = "../ndnrtc-thirdparty/webrtc-ios/src/out/ios_release/WebRTC.framework"; sourceTree = "<group>"; };
+		AF1F3FEA1DFA363400C8A857 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
 		AF66CFBD1DF8AC8600C651EE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AF66CFBE1DF8AC8600C651EE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AF66CFC01DF8AF4700C651EE /* WebrtcSignallingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebrtcSignallingController.h; sourceTree = "<group>"; };
@@ -440,6 +440,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
